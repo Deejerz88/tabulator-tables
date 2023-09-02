@@ -1,4 +1,4 @@
-/* Tabulator v5.5.2 (c) Oliver Folkerd 2023 */
+/* Tabulator v1.0.0 (c) Oliver Folkerd 2023 */
 class CoreFeature{
 
 	constructor(table){
@@ -12619,29 +12619,39 @@ class GroupRows extends Module{
 GroupRows.moduleName = "groupRows";
 
 var defaultUndoers = {
-	cellEdit: function(action){
+	cellEdit: function (action) {
 		action.component.setValueProcessData(action.data.oldValue);
 		action.component.cellRendered();
 	},
 
-	rowAdd: function(action){
+	rowAdd: function (action) {
 		action.component.deleteActual();
 	},
 
-	rowDelete: function(action){
-		var newRow = this.table.rowManager.addRowActual(action.data.data, action.data.pos, action.data.index);
+	rowDelete: function (action) {
+		var newRow = this.table.rowManager.addRowActual(
+			action.data.data,
+			action.data.pos,
+			action.data.index
+		);
 
-		if(this.table.options.groupBy && this.table.modExists("groupRows")){
+		if (this.table.options.groupBy && this.table.modExists("groupRows")) {
 			this.table.modules.groupRows.updateGroupRows(true);
 		}
-
+		if (this.getDisplayRows().length) {
+			this._clearPlaceholder();
+		}
 		this._rebindRow(action.component, newRow);
 	},
 
-	rowMove: function(action){
-		var after = (action.data.posFrom  - action.data.posTo) > 0;
+	rowMove: function (action) {
+		var after = action.data.posFrom - action.data.posTo > 0;
 
-		this.table.rowManager.moveRowActual(action.component, this.table.rowManager.getRowFromPosition(action.data.posFrom), after);
+		this.table.rowManager.moveRowActual(
+			action.component,
+			this.table.rowManager.getRowFromPosition(action.data.posFrom),
+			after
+		);
 
 		this.table.rowManager.regenerateRowPositions();
 		this.table.rowManager.reRenderInPosition();
