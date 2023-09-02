@@ -18,8 +18,8 @@ export default {
 		if (this.table.options.groupBy && this.table.modExists("groupRows")) {
 			this.table.modules.groupRows.updateGroupRows(true);
 		}
-		if (this.getDisplayRows().length) {
-			this._clearPlaceholder();
+		if (this.table.rowManager.getDisplayRows().length) {
+			this.table.rowManager._clearPlaceholder();
 		}
 		this._rebindRow(action.component, newRow);
 	},

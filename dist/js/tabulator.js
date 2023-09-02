@@ -1,4 +1,4 @@
-/* Tabulator v1.0.0 (c) Oliver Folkerd 2023 */
+/* Tabulator v1.0.1 (c) Oliver Folkerd 2023 */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -18718,8 +18718,8 @@
 			if (this.table.options.groupBy && this.table.modExists("groupRows")) {
 				this.table.modules.groupRows.updateGroupRows(true);
 			}
-			if (this.getDisplayRows().length) {
-				this._clearPlaceholder();
+			if (this.table.rowManager.getDisplayRows().length) {
+				this.table.rowManager._clearPlaceholder();
 			}
 			this._rebindRow(action.component, newRow);
 		},

@@ -1,4 +1,4 @@
-/* Tabulator v1.0.0 (c) Oliver Folkerd 2023 */
+/* Tabulator v1.0.1 (c) Oliver Folkerd 2023 */
 class CoreFeature{
 
 	constructor(table){
@@ -12638,8 +12638,8 @@ var defaultUndoers = {
 		if (this.table.options.groupBy && this.table.modExists("groupRows")) {
 			this.table.modules.groupRows.updateGroupRows(true);
 		}
-		if (this.getDisplayRows().length) {
-			this._clearPlaceholder();
+		if (this.table.rowManager.getDisplayRows().length) {
+			this.table.rowManager._clearPlaceholder();
 		}
 		this._rebindRow(action.component, newRow);
 	},
