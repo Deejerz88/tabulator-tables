@@ -1,6 +1,6 @@
 {
 	"name": "tabulator-tables-deejerz",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Fork of tabulator-tables",
 	"style": "dist/css/tabulator.css",
 	"main": "dist/js/tabulator.js",
